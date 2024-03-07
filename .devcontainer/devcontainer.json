@@ -1,0 +1,101 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/docker-existing-docker-compose
+{
+	"name": "Micro Video",
+	// Update the 'dockerComposeFile' list if you have more compose files or use different names.
+	// The .devcontainer/docker-compose.yml file contains any overrides you need/want to make.
+	"dockerComposeFile": [
+		"../docker-compose.yaml",
+		"docker-compose.yml"
+	],
+	// The 'service' property is the name of the service for the container that VS Code should
+	// use. Update this value and .devcontainer/docker-compose.yml to the real service name.
+	"service": "app",
+	// The optional 'workspaceFolder' property is the path VS Code should open by default when
+	// connected. This is typically a file mount in .devcontainer/docker-compose.yml
+	"workspaceFolder": "/home/node/app",
+	"features": {
+		"ghcr.io/devcontainers/features/common-utils:2": {},
+		"ghcr.io/devcontainers-contrib/features/zsh-plugins:0": {
+			"plugins": "git git-flow F-Sy-H zsh-autosuggestions zsh-completions",
+			"omzPlugins": "https://github.com/z-shell/F-Sy-H https://github.com/zsh-users/zsh-autosuggestions https://github.com/zsh-users/zsh-completions"
+		},
+		"ghcr.io/stuartleeks/dev-container-features/shell-history:0": {}
+	},
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+	// Uncomment the next line if you want start specific services in your Docker Compose config.
+	// "runServices": [],
+	// Uncomment the next line if you want to keep your containers running after VS Code shuts down.
+	// "shutdownAction": "none",
+	// Uncomment the next line to run commands after the container is created.
+	// "postCreateCommand": "cat /etc/os-release",
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"workbench.iconTheme": "material-icon-theme",
+				"terminal.integrated.defaultProfile.windows": "Git Bash",
+				"[yaml]": {
+					"editor.insertSpaces": true,
+					"editor.tabSize": 2,
+					"editor.autoIndent": "advanced",
+					"editor.defaultFormatter": "redhat.vscode-yaml"
+				},
+				"go.toolsManagement.autoUpdate": true,
+				"go.buildOnSave": "off",
+				"typescript.updateImportsOnFileMove.enabled": "always",
+				"javascript.updateImportsOnFileMove.enabled": "always",
+				"typescript.inlayHints.enumMemberValues.enabled": true,
+				"typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+				"typescript.inlayHints.parameterNames.enabled": "all",
+				"typescript.inlayHints.parameterTypes.enabled": true,
+				"typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+				"typescript.inlayHints.variableTypes.enabled": true,
+				"prettier.singleQuote": true,
+				"prettier.semi": false,
+				"workbench.colorTheme": "Dracula Soft",
+				"[go]": {
+					"editor.defaultFormatter": "golang.go"
+				},
+				"[typescript]": {
+					"editor.defaultFormatter": "vscode.typescript-language-features"
+				},
+				"editor.tabSize": 2,
+				"editor.formatOnSave": true,
+				"files.associations": {
+					"*.js": "javascript"
+				},
+				"[javascript]": {
+					"editor.defaultFormatter": "vscode.typescript-language-features"
+				},
+				"[json]": {
+					"editor.defaultFormatter": "vscode.json-language-features"
+				},
+				"javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+				"javascript.inlayHints.enumMemberValues.enabled": true,
+				"javascript.inlayHints.parameterNames.enabled": "all",
+				"javascript.inlayHints.parameterTypes.enabled": true,
+				"javascript.inlayHints.propertyDeclarationTypes.enabled": true,
+				"javascript.inlayHints.variableTypes.enabled": true
+			},
+			"extensions": [
+				"ms-azuretools.vscode-docker",
+				"golang.go",
+				"hashicorp.terraform",
+				"VisualStudioExptTeam.vscodeintellicode",
+				"VisualStudioExptTeam.intellicode-api-usage-examples",
+				"ms-kubernetes-tools.vscode-kubernetes-tools",
+				"christian-kohler.npm-intellisense",
+				"YoavBls.pretty-ts-errors",
+				"humao.rest-client",
+				"DSKWRK.vscode-generate-getter-setter",
+				"redhat.vscode-yaml"
+			]
+		}
+	}
+	// Uncomment to connect as an existing user other than the container default. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "devcontainer"
+}
