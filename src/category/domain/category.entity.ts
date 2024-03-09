@@ -1,5 +1,8 @@
 import { Uuid } from "../../shared/domain/value-objects/uuid.vo"
+import { Notification } from "../../shared/domain/validators/notification"
 import { CategoryValidatorFactory } from "./category.validator"
+import { Entity } from "../../shared/domain/entity"
+import { ValueObject } from "../../shared/domain/value-object"
 
 export type CategoryConstructorProps = {
   category_id?: string
@@ -15,26 +18,31 @@ export type CategoryCreateCommand = {
   is_active?: boolean
 }
 
-export class Category {
+export class Category extends Entity {
   category_id: Uuid
   name: string
   description: string | null
   is_active: boolean
   created_at: Date
-  notification: any
 
   constructor(props: CategoryConstructorProps) {
+    super()
     this.category_id = Uuid.create(props.category_id)
     this.name = props.name
     this.description = props.description ?? null
     this.is_active = props.is_active ?? true
     this.created_at = props.created_at ?? new Date()
+    this.notification = new Notification()
   }
 
   static create(props: CategoryCreateCommand) {
     const category = new Category(props)
     category.validate()
     return category
+  }
+
+  get entity_id(): ValueObject {
+    return this.category_id
   }
 
   changeName(name: string) {

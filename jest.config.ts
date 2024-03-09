@@ -44,7 +44,14 @@ const config: Config = {
   // ],
 
   // An object that configures minimum threshold enforcement for coverage results
-  // coverageThreshold: undefined,
+  coverageThreshold: {
+    global: {
+      branches: 90,
+      functions: 80,
+      lines: 80,
+      // statements: -10,
+    },
+  },
 
   // A path to a custom dependency extractor
   // dependencyExtractor: undefined,
@@ -137,7 +144,7 @@ const config: Config = {
   // setupFiles: [],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
-  // setupFilesAfterEnv: [],
+  setupFilesAfterEnv: ['./shared/infra/testing/expect-helpers.ts'],
 
   // The number of seconds after which a test is considered as slow and reported as such in the results.
   // slowTestThreshold: 5,

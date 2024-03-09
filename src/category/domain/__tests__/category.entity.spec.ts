@@ -151,4 +151,32 @@ describe('Category Unit Tests', () => {
       expect(category.category_id).toBeInstanceOf(Uuid);
     });
   });
+
+  describe('Category Validator', () => {
+    describe('create command', () => {
+      test('should an invalid category with name property', () => {
+        const category = Category.create({ name: 't'.repeat(256) });
+
+        expect(category.notification.hasErrors()).toBe(true);
+        expect(category.notification).notificationContainsErrorMessages([
+          {
+            name: ['name must be shorter than or equal to 255 characters'],
+          },
+        ]);
+      });
+    });
+
+    describe('changeName method', () => {
+      it('should a invalid category using name property', () => {
+        const category = Category.create({ name: 'Movie' });
+        category.changeName('t'.repeat(256));
+        expect(category.notification.hasErrors()).toBe(true);
+        expect(category.notification).notificationContainsErrorMessages([
+          {
+            name: ['name must be shorter than or equal to 255 characters'],
+          },
+        ]);
+      });
+    });
+  });
 });
